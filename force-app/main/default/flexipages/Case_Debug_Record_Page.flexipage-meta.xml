@@ -4,6 +4,7 @@
         <itemInstances>
             <componentInstance>
                 <componentName>force:highlightsPanel</componentName>
+                <identifier>force_highlightsPanel</identifier>
             </componentInstance>
         </itemInstances>
         <name>header</name>
@@ -12,25 +13,65 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>Case.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListComponentOverride</name>
+                    <value>NONE</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>rowsToDisplay</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
                 <componentName>runtime_sales_social:socialPanel</componentName>
+                <identifier>runtime_sales_social_socialPanel</identifier>
             </componentInstance>
         </itemInstances>
-        <name>main</name>
+        <name>feedColumn</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>displayOption</name>
+                    <value>BOTH</value>
+                </componentInstanceProperties>
                 <componentName>force:detailPanel</componentName>
+                <identifier>force_detailPanel1</identifier>
             </componentInstance>
         </itemInstances>
-        <name>sidebar</name>
+        <name>detailColumn</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>Case.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListComponentOverride</name>
+                    <value>NONE</value>
+                </componentInstanceProperties>
+                <componentName>force:relatedListContainer</componentName>
+                <identifier>force_relatedListContainer1</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>relatedColumn</name>
         <type>Region</type>
     </flexiPageRegions>
     <masterLabel>Case Debug Record Page</masterLabel>
     <sobjectType>Case</sobjectType>
     <template>
-        <name>flexipage:recordHomeTemplateDesktop</name>
+        <name>flexipage:recordHomeThreeColumnsDesktop</name>
     </template>
     <type>RecordPage</type>
 </FlexiPage>

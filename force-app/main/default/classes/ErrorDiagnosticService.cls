@@ -589,27 +589,12 @@ public with sharing class ErrorDiagnosticService {
         description += 'Message: ' + error.errorMessage + '\n\n';
 
         if (String.isNotBlank(error.stackTrace)) {
-            description += 'Stacktrace:\n' + error.stackTrace + '\n\n';
+            description += 'Stacktrace (first 1000 chars):\n' + error.stackTrace.left(1000) + '\n\n';
         }
         
-        description += '=== AI DIAGNOSTIC ===\n\n';
-        description += 'Severity: ' + diagnostic.severity + '\n\n';
-        description += 'Problem:\n' + diagnostic.problem + '\n\n';
-        description += 'Root Cause:\n' + diagnostic.rootCause + '\n\n';
-        description += 'Solution:\n' + diagnostic.solution + '\n\n';
-        
-        if (String.isNotBlank(diagnostic.codeFix)) {
-            description += 'Code Fix:\n' + diagnostic.codeFix + '\n\n';
-        }
-        
-        if (diagnostic.steps != null && !diagnostic.steps.isEmpty()) {
-            description += 'ÉTAPES DE CORRECTION:\n';
-            Integer stepNum = 1;
-            for (String step : diagnostic.steps) {
-                description += stepNum + '. ' + step + '\n';
-                stepNum++;
-            }
-        }
+        description += '─────────────────────────────────────────────\n';
+        description += '💡 Diagnostic IA disponible dans le Feed du Case\n';
+        description += '─────────────────────────────────────────────';
         
         return description;
     }
