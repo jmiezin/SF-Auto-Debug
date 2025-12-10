@@ -5,57 +5,7 @@
     <backgroundStartColor>#FFFFFF</backgroundStartColor>
     <dashboardType>SpecifiedUser</dashboardType>
     <description>Dashboard de monitoring des erreurs debug avec diagnostic IA</description>
-    <isGridLayout>true</isGridLayout>
     <leftSection>
-        <columnSize>Medium</columnSize>
-        <components>
-            <componentType>Metric</componentType>
-            <dashboardComponent>
-                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-                <componentType>Metric</componentType>
-                <displayUnits>Auto</displayUnits>
-                <indicatorBreakpoint1>50.0</indicatorBreakpoint1>
-                <indicatorBreakpoint2>100.0</indicatorBreakpoint2>
-                <indicatorHighColor>#C23934</indicatorHighColor>
-                <indicatorLowColor>#54C254</indicatorLowColor>
-                <indicatorMiddleColor>#FFB75D</indicatorMiddleColor>
-                <metricLabel>Total Errors (30 Days)</metricLabel>
-                <report>DevOps_Monitoring/Debug_Errors_by_Source_and_Component</report>
-            </dashboardComponent>
-        </components>
-        <components>
-            <componentType>Metric</componentType>
-            <dashboardComponent>
-                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-                <componentType>Metric</componentType>
-                <displayUnits>Auto</displayUnits>
-                <indicatorBreakpoint1>5.0</indicatorBreakpoint1>
-                <indicatorBreakpoint2>10.0</indicatorBreakpoint2>
-                <indicatorHighColor>#C23934</indicatorHighColor>
-                <indicatorLowColor>#54C254</indicatorLowColor>
-                <indicatorMiddleColor>#FFB75D</indicatorMiddleColor>
-                <metricLabel>Open Critical/High</metricLabel>
-                <report>DevOps_Monitoring/Debug_Open_Critical_High_Errors</report>
-            </dashboardComponent>
-        </components>
-        <components>
-            <componentType>FlexTable</componentType>
-            <dashboardComponent>
-                <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
-                <componentType>FlexTable</componentType>
-                <flexComponentProperties>
-                    <flexComponentProperty>
-                        <name>rowCount</name>
-                        <value>10</value>
-                    </flexComponentProperty>
-                </flexComponentProperties>
-                <report>DevOps_Monitoring/Debug_Open_Critical_High_Errors</report>
-                <sortBy>RowLabelAscending</sortBy>
-                <title>Open Critical/High Errors</title>
-            </dashboardComponent>
-        </components>
-    </leftSection>
-    <middleSection>
         <columnSize>Medium</columnSize>
         <components>
             <componentType>Chart</componentType>
@@ -93,8 +43,8 @@
                 <useReportChart>true</useReportChart>
             </dashboardComponent>
         </components>
-    </middleSection>
-    <rightSection>
+    </leftSection>
+    <middleSection>
         <columnSize>Medium</columnSize>
         <components>
             <componentType>Chart</componentType>
@@ -130,6 +80,26 @@
                 <showValues>true</showValues>
                 <sortBy>RowLabelAscending</sortBy>
                 <useReportChart>true</useReportChart>
+            </dashboardComponent>
+        </components>
+    </middleSection>
+    <rightSection>
+        <columnSize>Medium</columnSize>
+        <components>
+            <componentType>Table</componentType>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+                <componentType>Table</componentType>
+                <displayUnits>Auto</displayUnits>
+                <drillEnabled>false</drillEnabled>
+                <drillToDetailEnabled>false</drillToDetailEnabled>
+                <header>Open Critical/High Errors</header>
+                <indicatorHighColor>#C23934</indicatorHighColor>
+                <indicatorLowColor>#54C254</indicatorLowColor>
+                <indicatorMiddleColor>#FFB75D</indicatorMiddleColor>
+                <report>DevOps_Monitoring/Debug_Open_Critical_High_Errors</report>
+                <showPicturesOnCharts>false</showPicturesOnCharts>
+                <sortBy>RowLabelAscending</sortBy>
             </dashboardComponent>
         </components>
     </rightSection>

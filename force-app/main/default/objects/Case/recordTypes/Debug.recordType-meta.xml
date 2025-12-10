@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Debug</fullName>
     <active>true</active>
+    <businessProcess>Standard</businessProcess>
     <label>Debug</label>
     <description>Record Type pour les Cases de debug technique générés automatiquement par le système de diagnostic IA</description>
 </RecordType>
