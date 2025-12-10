@@ -4,7 +4,6 @@
         <itemInstances>
             <componentInstance>
                 <componentName>force:highlightsPanel</componentName>
-                <identifier>force_highlightsPanel</identifier>
             </componentInstance>
         </itemInstances>
         <name>header</name>
@@ -14,7 +13,6 @@
         <itemInstances>
             <componentInstance>
                 <componentName>runtime_sales_social:socialPanel</componentName>
-                <identifier>runtime_sales_social_socialPanel</identifier>
             </componentInstance>
         </itemInstances>
         <name>main</name>
@@ -24,7 +22,6 @@
         <itemInstances>
             <componentInstance>
                 <componentName>force:detailPanel</componentName>
-                <identifier>force_detailPanel</identifier>
             </componentInstance>
         </itemInstances>
         <name>sidebar</name>

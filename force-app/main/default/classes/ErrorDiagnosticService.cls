@@ -415,6 +415,9 @@ public with sharing class ErrorDiagnosticService {
         // Type d'erreur dans la description (pour filtrage)
         newCase.Type = error.errorType;
         
+        // ✅ RecordType Debug
+        newCase.RecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('Debug').getRecordTypeId();
+        
         // ✅ NOUVEAU: Champs custom pour debug
         newCase.put('Error_Source__c', error.errorType);
         newCase.put('Component__c', error.errorType == 'LWC' ? error.componentName : error.errorType == 'APEX' ? error.className : error.flowName);
