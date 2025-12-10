@@ -553,7 +553,7 @@ public with sharing class ErrorDiagnosticService {
     }
     
     /**
-     * Construit la description simplifiée du Case (diagnostic IA dans Feed uniquement)
+     * Construit la description complète du Case
      */
     private static String buildCaseDescription(ErrorInfo error, DiagnosticResult diagnostic, DiagnosticContext context) {
         // ✅ NOUVEAU v2.3: Description structurée selon template GPT
