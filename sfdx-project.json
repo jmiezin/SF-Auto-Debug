@@ -1,0 +1,15 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true,
+      "package": "SF Auto Debug",
+      "versionName": "v2.3",
+      "versionNumber": "2.3.0.NEXT"
+    }
+  ],
+  "name": "SF Auto Debug",
+  "namespace": "",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "65.0"
+}

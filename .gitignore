@@ -1,0 +1,26 @@
+# Salesforce
+.sfdx/
+.sf/
+.localdevserver/
+deploy-options.json
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node
+node_modules/
+package-lock.json
+
+# Tests temporaires
+test_*.apex
+*.apex.log
