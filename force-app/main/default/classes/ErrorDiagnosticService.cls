@@ -415,6 +415,20 @@ public with sharing class ErrorDiagnosticService {
         // Type d'erreur dans la description (pour filtrage)
         newCase.Type = error.errorType;
         
+        // ✅ NOUVEAU: Champs custom pour debug
+        newCase.put('Error_Source__c', error.errorType);
+        newCase.put('Component__c', error.errorType == 'LWC' ? error.componentName : error.errorType == 'APEX' ? error.className : error.flowName);
+        newCase.put('Method__c', error.methodName);
+        newCase.put('Severity__c', diagnostic.severity);
+        newCase.put('User__c', UserInfo.getUserId());
+        newCase.put('Error_Message__c', error.errorMessage);
+        newCase.put('Raw_Error__c', error.stackTrace);
+        newCase.put('Context__c', error.contextData);
+        newCase.put('Error_Json__c', JSON.serializePretty(diagnostic));
+        newCase.put('Error_Signature__c', generateErrorSignature(error));
+        newCase.put('Environment__c', getEnvironment());
+        newCase.put('Release_Tag__c', getReleaseTag());
+        
         // Assigner à l'admin (récupérer depuis Custom Metadata ou User)
         newCase.OwnerId = getAdminUserId();
 
@@ -605,6 +619,44 @@ public with sharing class ErrorDiagnosticService {
         if (severity == 'HIGH') return 'High';
         if (severity == 'MEDIUM') return 'Medium';
         return 'Low';
+    }
+    
+    /**
+     * Génère une signature unique pour regrouper les erreurs identiques
+     */
+    private static String generateErrorSignature(ErrorInfo error) {
+        String signature = error.errorType + '|' + 
+                          (String.isNotBlank(error.componentName) ? error.componentName : error.className) + '|' +
+                          (String.isNotBlank(error.methodName) ? error.methodName : '') + '|' +
+                          (String.isNotBlank(error.errorMessage) ? error.errorMessage.left(100) : '');
+        return EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(signature))).left(40);
+    }
+    
+    /**
+     * Détecte l'environnement (DEV/UAT/PROD) selon l'org
+     */
+    private static String getEnvironment() {
+        String orgId = UserInfo.getOrganizationId();
+        String orgName = UserInfo.getOrganizationName();
+        
+        // Détecter selon le nom de l'org ou l'ID
+        if (orgName.containsIgnoreCase('sandbox') || orgName.containsIgnoreCase('dev')) {
+            return 'DEV';
+        } else if (orgName.containsIgnoreCase('uat') || orgName.containsIgnoreCase('preprod')) {
+            return 'UAT';
+        }
+        
+        // Par défaut: PROD
+        return 'PROD';
+    }
+    
+    /**
+     * Récupère le tag de release (à personnaliser selon votre CI/CD)
+     */
+    private static String getReleaseTag() {
+        // TODO: Intégrer avec votre système CI/CD pour récupérer le tag
+        // Pour l'instant, retourner une version basée sur la date
+        return 'v' + Datetime.now().format('yyyy.MM.dd');
     }
     
     private static Id getAdminUserId() {
