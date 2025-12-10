@@ -271,6 +271,10 @@ public with sharing class ErrorDiagnosticService {
             result.codeFix = (String) jsonResponse.get('codeFix');
             result.severity = (String) jsonResponse.get('severity');
             
+            // ✅ DEBUG: Logger les valeurs parsées
+            System.debug(LoggingLevel.INFO, '✅ [PARSING] solution: ' + (String.isBlank(result.solution) ? 'VIDE' : result.solution.left(100)));
+            System.debug(LoggingLevel.INFO, '✅ [PARSING] codeFix: ' + (String.isBlank(result.codeFix) ? 'VIDE' : result.codeFix.left(100)));
+            
             // Parser les steps
             if (jsonResponse.containsKey('steps')) {
                 List<Object> stepsObj = (List<Object>) jsonResponse.get('steps');
@@ -523,7 +527,12 @@ public with sharing class ErrorDiagnosticService {
 
         message += '❗ **Problème**\n\n' + diagnostic.problem + '\n\n';
         message += '🔍 **Cause Racine**\n\n' + diagnostic.rootCause + '\n\n';
-        message += '🛠️ **Solution Recommandée**\n\n' + diagnostic.solution;
+        // ✅ Vérifier que solution n'est pas vide avant d'afficher
+        if (String.isNotBlank(diagnostic.solution)) {
+            message += '🛠️ **Solution Recommandée**\n\n' + diagnostic.solution;
+        } else {
+            message += '🛠️ **Solution Recommandée**\n\n*Solution non disponible. Vérifier les logs pour plus de détails.*';
+        }
 
         if (String.isNotBlank(diagnostic.codeFix)) {
             message += '\n\n─────────────────────────────────────────────\n\n';
@@ -592,9 +601,9 @@ public with sharing class ErrorDiagnosticService {
             description += 'Stacktrace (first 1000 chars):\n' + error.stackTrace.left(1000) + '\n\n';
         }
         
-        description += '─────────────────────────────────────────────\n';
+        description += '\n─────────────────────────────────────────────\n';
         description += '💡 Diagnostic IA disponible dans le Feed du Case\n';
-        description += '─────────────────────────────────────────────';
+        description += '─────────────────────────────────────────────\n';
         
         return description;
     }
